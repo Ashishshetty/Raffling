@@ -68,8 +68,8 @@ $(document).on('click', "#drawWinner", function(e){
             winner_id = $(this).data('userid');
             $(this).addClass('winner');
             $.ajax({
-                url: '/tasks/' + winner_id,
-                method: 'put',
+                url: 'http://localhost:3000/',
+                method: 'post',
                 data: {
                     user: {
                         winner: true
