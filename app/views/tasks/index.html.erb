@@ -19,7 +19,7 @@
   <%= render @tasks %>
   </div>
 </div>
-<button id="win" class="btn btn-success ">Generate Winner</button>
+<button id="drawWinner" class="btn btn-success ">Generate Winner</button>
 <% @tasks.each do |t| %>
 <% end -%>
 
@@ -30,31 +30,56 @@
 //    alert(y);
 // });
 
-  $("#win").click(function myFunction(){
-    x=("#tasks").length
-   y = Math.floor((Math.random() * x) + 1);
-   alert(y);
-        // update: function (event, ui) {
-            var list = [];
-            // var changed_list = ("t").toArray;
+  // $("#win").click(function myFunction(){
+  //   x=("#tasks").length
+  //  y = Math.floor((Math.random() * x) + 1);
+  //  alert(y);
+  //       // update: function (event, ui) {
+  //           var list = [];
+  //           // var changed_list = ("t").toArray;
 
             
-                list.push({id: y, winner: "winner"})
-                console.log(list, y)
+  //               list.push({id: y, winner: "winner"})
+  //               console.log(list, y)
 
             
-            $.ajax({
-                dataType: 'json',
-                url: '/tasks/win',
-                method: "POST",
-                data: {changed_winner: list}
+  //           $.ajax({
+  //               dataType: 'json',
+  //               url: '/tasks/win',
+  //               method: "POST",
+  //               data: {changed_winner: list}
 
-            });
-        }
+  //           });
+  //       }
     // }
 
  // }
- );
+ // );
+
+
+$(document).on('click', "#drawWinner", function(e){
+    e.preventDefault();
+    var winner_id;
+    var lis = $('ul#users_list').children(':not(.winner)');
+    var users = lis.map(function(){ return $(this).text()});
+    var winner_user = users[Math.floor(Math.random()*users.length)];
+    lis.each(function(){
+        if ($(this).text() == winner_user ) {
+            winner_id = $(this).data('userid');
+            $(this).addClass('winner');
+            $.ajax({
+                url: '/tasks/' + winner_id,
+                method: 'put',
+                data: {
+                    user: {
+                        winner: true
+                    }
+                },
+                dataType: 'script'
+            });
+        }
+    });
+});
 </script>
 
 

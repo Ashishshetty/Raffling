@@ -1,9 +1,13 @@
 <li class="list-group-item list-group-item-info">
 
- <span><%= task.name %></span>
-
- <span><%= task.winner %></span>
-
+<!-- <ul id="users_list">
+	<% @tasks.each do |task| %>
+	<li data-userid="<%= task.id %>" class="<%='winner' if task.winner%>"><%= task.name %></li>
+	<% end %>
+</ul> -->
+<ul id="users_list">
+ <li data-userid="<%= task.id %>" class="<%='winner' if task.winner%>"><%= task.name %></li>
+</ul>
   <span class="edit">
     <%= link_to edit_task_path(task), remote: true do %>
       <button class="btn btn-primary btn-xs">Edit</button>
