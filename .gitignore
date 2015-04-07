@@ -1,0 +1,11 @@
+*.swp
+*~
+
+/.bundle
+/log/*.log
+/tmp
+/public
+.secret
+
+/db/*.sqlite3
+/db/*.sqlite3-journal

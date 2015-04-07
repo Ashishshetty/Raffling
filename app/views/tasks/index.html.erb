@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-1">
+    <h2>Tasks</h2>
+  </div>
+
+  <div class="col-md-2 col-md-offset-4">
+    <%= link_to new_task_path, remote: true do %>
+      <button class="btn btn-default">New</button>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-2" id="task-form" style="display:none;"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 col-md-offset-1" id="tasks">
+  <%= render @tasks %>
+  </div>
+</div>
+<button id="win" class="btn btn-success ">Generate Winner</button>
+<% @tasks.each do |t| %>
+<% end -%>
+
+<script type="text/javascript">
+//   $("#win").click(function myFunction() {
+//     x=("#tasks").length
+//    y = Math.floor((Math.random() * x) + 1);
+//    alert(y);
+// });
+
+  $("#win").click(function myFunction(){
+    x=("#tasks").length
+   y = Math.floor((Math.random() * x) + 1);
+   alert(y);
+        // update: function (event, ui) {
+            var list = [];
+            // var changed_list = ("t").toArray;
+
+            
+                list.push({id: y, winner: "winner"})
+                console.log(list, y)
+
+            
+            $.ajax({
+                dataType: 'json',
+                url: '/tasks/win',
+                method: "POST",
+                data: {changed_winner: list}
+
+            });
+        }
+    // }
+
+ // }
+ );
+</script>
+
+
+
