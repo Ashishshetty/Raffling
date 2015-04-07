@@ -20,47 +20,12 @@
   </div>
 </div>
 <button id="drawWinner" class="btn btn-success ">Generate Winner</button>
-<% @tasks.each do |t| %>
-<% end -%>
 
 <script type="text/javascript">
-//   $("#win").click(function myFunction() {
-//     x=("#tasks").length
-//    y = Math.floor((Math.random() * x) + 1);
-//    alert(y);
-// });
-
-  // $("#win").click(function myFunction(){
-  //   x=("#tasks").length
-  //  y = Math.floor((Math.random() * x) + 1);
-  //  alert(y);
-  //       // update: function (event, ui) {
-  //           var list = [];
-  //           // var changed_list = ("t").toArray;
-
-            
-  //               list.push({id: y, winner: "winner"})
-  //               console.log(list, y)
-
-            
-  //           $.ajax({
-  //               dataType: 'json',
-  //               url: '/tasks/win',
-  //               method: "POST",
-  //               data: {changed_winner: list}
-
-  //           });
-  //       }
-    // }
-
- // }
- // );
-
-
 $(document).on('click', "#drawWinner", function(e){
     e.preventDefault();
     var winner_id;
-    var lis = $('ul#users_list').children(':not(.winner)');
+    var lis = $('ul#users_list').children();
     var users = lis.map(function(){ return $(this).text()});
     var winner_user = users[Math.floor(Math.random()*users.length)];
     lis.each(function(){
@@ -68,10 +33,10 @@ $(document).on('click', "#drawWinner", function(e){
             winner_id = $(this).data('userid');
             $(this).addClass('winner');
             $.ajax({
-                url: 'http://localhost:3000/',
-                method: 'post',
+                url: '/tasks/' + winner_id,
+                method: 'put',
                 data: {
-                    user: {
+                    task: {
                         winner: true
                     }
                 },

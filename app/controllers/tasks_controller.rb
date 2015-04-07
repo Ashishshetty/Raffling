@@ -4,21 +4,9 @@ class TasksController < ApplicationController
   respond_to :html, :js, :json
 
   def index
+    # binding.pry
     @tasks = Task.all
   end
-
-  def win
-    # reading
-    params[:changed_orders].value do |param|
-      #update
-      @task = Task.find(param[:id])
-      @task.winner = param[:winner]
-      @task.save!
-    end
-      render text: 'success'
-  end
-
-
 
   def new
     @task = Task.new
@@ -30,6 +18,8 @@ class TasksController < ApplicationController
   end
 
   def update
+    # binding.pry
+     @task = Task.find(params[:id])
     @task.update_attributes(task_params)
   end
 
