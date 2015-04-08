@@ -1,6 +1,7 @@
 html {
   position: relative;
   min-height: 100%;
+
 }
 
 body { margin-bottom: 60px; }
@@ -10,6 +11,10 @@ body { margin-bottom: 60px; }
   min-width: 100%;
   background-color: black;
   color: #9B111E;
+}
+.row{
+	background: blue;
+
 }
 
 .content { padding: 50px; }
@@ -22,3 +27,27 @@ body { margin-bottom: 60px; }
 }
 
 #task-form { padding-bottom: 15px; }
+#container{
+	width: 960px;
+	min-height: 500px;
+	margin: 20px auto;
+	border: 1px solid red;
+	padding: 10px;
+	ul{
+	        padding: 10px 0px;
+            margin-bottom: 14px;
+		padding: 0;
+		li:first-child{
+			border-top: 1px solid #ddd; 
+		}
+		li{
+			border-bottom: 1px solid #ddd; 
+			list-style-type: none;
+			padding: 5px;
+			
+		}
+		li.winner{
+			background: url("/assets/winner.gif") right no-repeat;
+		}
+	}
+}
